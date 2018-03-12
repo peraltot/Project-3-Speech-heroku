@@ -1,6 +1,14 @@
-import React from "react";
+// import React from "react";
+<<<<<<< HEAD
+// import CollapsibleItem from "react-materialize";
 
-export const ListItem = props =>
-  <li className="collection-item">
-    {...props}
-  </li>;
+
+=======
+
+>>>>>>> c88f40b351df31572f20b8cc7d2b1fe775da88a4
+// const ListItem = props =>
+//   <li>
+//     {props.children}
+//   </li>;
+
+// export default ListItem;

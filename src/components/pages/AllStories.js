@@ -1,12 +1,15 @@
-// CONTAINER COMPONENT
-
 import React, { Component } from "react";
-//Import the presentational component
 import StoryPanel from "../../components/StoryPanel";
 import API from "../../utils/api-axios";
 import googleApi from "../../utils/googleApi";
-import MailModal from '../Mail-Modal';
-import {Button, Icon} from "react-materialize";
+import MailBtn from '../Buttons/MailBtn';
+import DeleteBtn from '../Buttons/DeleteBtn';
+import DriveBtn from '../Buttons/DriveBtn';
+// import PopoutList from '../List/PopoutList';
+import { Row, Col } from "react-materialize";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
+
 class AllStories extends Component {
 
     constructor(props) {
@@ -61,7 +64,6 @@ class AllStories extends Component {
                 alert(err);
                 console.log('error uploading to google drive ' + err);
             });
-
     };
 
     mailStory() {
@@ -70,63 +72,45 @@ class AllStories extends Component {
             from: 'test@example.com',
             subject: 'Sending with SendGrid is Fun',
             text: 'and easy to do anywhere, even with Node.js',
-          };
+        };
 
         API.mail(msg)
             .then(res => console.log(res))
             .catch(err => console.log(err));
     };
 
-    render() {
-        const allStoryPanels = this.state.stories.map(story => {
-            return (
-
-                <StoryPanel
-                    key={story._id}
-                    title={story.title}
-                    words={story.words}
-
-                />
-            );
-        });
-
-
-        return (
-            <div>
-                {/* {allStoryPanels} */}
-                My Stories:
-                {StoryPanel}
-            </div>
-        )
-    }
 
     render() {
-        const theButtons = this.state.stories.map(storyBtns => {
+        const theStories = this.state.stories.map(story => {
             return (
-                
-                <div key={storyBtns._id}>
-                    <h4>
-                        {storyBtns.title}:
-                    </h4>
-                    <Button onClick={() => this.delStory(storyBtns._id)}
-                    ><Icon>delete</Icon>
-                  </Button>
-
-                    <Button onClick={() =>
-                        this.gdUploadStory(storyBtns._id, storyBtns.words)}
-                    ><Icon>backup</Icon>
-                  </Button>
-   <MailModal nickTest={this.mailStory}/>
-                  <p>
-                   {storyBtns.words}
-                   </p>
-
-                </div>
+                <Row>
+                    <Col l={8}>
+                    <MuiThemeProvider>
+                        <Card>
+                            <CardHeader
+                                className="orange-text"
+                                id="storyCardHeader"
+                                title={story.title}
+                                actAsExpander={true}
+                                showExpandableButton={true}
+                            />
+                            <CardText expandable={true}>
+                                {story.words}
+                            </CardText>
+                            <CardActions>
+                                <DeleteBtn label="delete" onClick={() => this.delStory(story._id)} />
+                                <DriveBtn label="drive" onClick={() => this.gdUploadStory(story._id, story.words)} />
+                                <MailBtn label="mail" subject={story.title} text={story.words} />
+                            </CardActions>
+                        </Card>
+                        </MuiThemeProvider>
+                    </Col>
+                </Row>
             )
         });
         return (
             <div>
-                {theButtons}
+                {theStories}
             </div>
         )
     }
