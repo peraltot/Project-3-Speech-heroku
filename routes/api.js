@@ -19,57 +19,38 @@ const express = require("express");
 const api = express.Router();
 const db = require('../models/')
 const sgMail = require('@sendgrid/mail');
-// Axios is a promised-based http library, similar to jQuery's Ajax method
-// It works on the client and on the server
-var axios = require("axios");
-// Route for retrieving all stories from the db
 
-
+// deliver home page
 
 api.get('/', (req, res) => {
   res.render('index', {});
 });
 
-api.get('/googledrive', (req, res) => {
-  res.render('googledrive', {});
-});
+// Route for retrieving all stories from the db
 
-//sample: to test search to external api if we need this later
+// api.get("/stories/:, function (req, res) {
+//   // Find all Notes
+//   db.Story
+//     .find({userEmail: req.params.userEmail})
+//     .then(function (dbStory) {
+//       // If all Notes are successfully found, send them back to the client
+//       res.json(dbStory);
+//       // res.render('stories', dbStory);
 
-// const BASEURL = "https://www.omdbapi.com/?t=";
-// const APIKEY = "&apikey=trilogy";
-
-// export default {
-//   search: function(query) {
-//     return axios.get(BASEURL + query + APIKEY);
-//   }
-// };
-
-
-
-api.get("/stories", function (req, res) {
-  // Find all Notes
-  db.Story
-    .find({})
-    .then(function (dbStory) {
-      // If all Notes are successfully found, send them back to the client
-      res.json(dbStory);
-      // res.render('stories', dbStory);
-
-    })
-    .catch(function (err) {
-      // If an error occurs, send the error back to the client
-      res.json(err);
-      //SEND BACK HERE
-    });
-});
+//     })
+//     .catch(function (err) {
+//       // If an error occurs, send the error back to the client
+//       res.json(err);
+//       //SEND BACK HERE
+//     });
+// });
 
 //find one story - to do - add in .populate (user)
-api.get("/stories/:id", function (req, res) {
+api.get("/stories/:userEmail", function (req, res) {
   // Find all Notes
   db.Story
-    .findOne({
-      _id: req.params.id
+    .find({
+      userEmail: req.params.userEmail
     })
     .then(function (dbStory) {
       // If all Notes are successfully found, send them back to the client
