@@ -76,9 +76,9 @@ nav a {
 }
 
 .base--button:hover, .base--button:focus, button:focus, button:hover {
-    background-color: #FF9F1C;
+    background-color: #FF9F1C !important;
     color: white;
-    border-color: #FF9F1C;
+    border-color: #FF9F1C !important;
 }
 
 button:active {
@@ -337,6 +337,7 @@ dialog, dd, dt {
     font-size: 35px !important;
     padding-right: 0px !important;
     font-family: 'Gochi Hand', cursive;
+    margin-top: 10px;
 }
 
 #storyCardHeader div {
@@ -348,13 +349,15 @@ dialog, dd, dt {
 }
 
 .cardText {
-    font-size: 18px !important;
+    font-size: 20px !important;
 }
 
 .btn-floating.btn-large {
     width: 56px;
     height: 56px;
-    margin-left: 20px;
+    left: -20px;
+    margin-bottom: 20px;
+    margin-left: 15px;
     margin-top: 12px;
     background-color: #FDE74C;    
 }
@@ -368,5 +371,102 @@ dialog, dd, dt {
     color: black;
 }
 
+.mailBtnDiv {
+    height: 56px;
+    width: 56px;
+    display: inline-block;
+}
 
-/* .material-icons.md-48 { font-size: 48px; } */
+.storyCardButtonsDiv {
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* Modals */
+#storyTitleModal {
+    position: absolute !important;
+    left: -9999px !important;
+    right: -9999px !important;
+    background-color: #fff !important;
+    padding: 1rem !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    width: 100% !important;
+    margin: auto !important;
+    overflow: auto !important;
+    border-radius: none !important;
+    will-change: top, opacity !important;
+}
+
+#emailModal {
+    overflow: none !important;
+    width: 450px !important;
+    height: 300px !important;
+}
+
+.modalHeader {
+    font-family: 'Raleway', sans-serif;
+    color: #FF9F1C;  
+    font-weight: bold; 
+    font-size: 24px; 
+}
+
+.emailModalHeader {
+    margin-top: 35px !important;
+    font-family: 'Raleway', sans-serif;
+    color: #FF9F1C;  
+    font-weight: bold; 
+    font-size: 24px;
+}
+
+.text-input {
+    border-bottom: none;
+}
+
+#text-input-1 {
+    margin-top: 50px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    height: 3rem;
+}
+
+#modalSubmitBtn {
+    margin-top: 30px;
+    margin-left: 34%;
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.emailModalSubmitBtn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.text-input--input[type=text] {
+    box-shadow: 0 3px 0 0 black;
+}
+
+.text-input--input[type=text]:focus {
+    border-bottom: 2px solid #FF9F1C !important;
+    box-shadow: 0 2px 0 0 #FF9F1C !important;
+    color: black;
+}
+
+.text-input--input[type=text].empty {
+    box-shadow: 0 3px 0 0 black;
+}
+
+.text-input--dummy {
+    font-family: 'Raleway', sans-serif !important;
+    font-weight: bold !important;    
+}
+
+.modal--x:focus {
+    background-color: #FF9F1C;
+}
